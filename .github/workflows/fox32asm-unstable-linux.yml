@@ -8,23 +8,16 @@ on:
 name: fox32asm Unstable - Linux
 
 jobs:
-  fox32asm-unstable-linux:
+  fox32asm-nix:
     name: Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
-      - name: Install Rust toolchain
-        uses: actions-rs/toolchain@v1
+      - uses: cachix/install-nix-action@v22
         with:
-          toolchain: stable
-          override: true
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
 
       - name: Build
-        run: cargo build --release
+        run: nix build .#fox32asm
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: fox32asm
-          path: target/release/fox32asm
