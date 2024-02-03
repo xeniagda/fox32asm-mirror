@@ -21,6 +21,10 @@
           NIX_GIT_SHA_SHORT = if self ? rev then builtins.substring 0 7 self.rev else "dirty";
         };
         packages.default = packages.fox32asm;
+
+        devShells.default = pkgs.mkShell {
+          packages = [ pkgs.cargo ];
+        };
       }
     );
 }
