@@ -10,14 +10,17 @@
       let pkgs = import nixpkgs { system = sys; };
 
       in rec {
-        packages.default = pkgs.rustPlatform.buildRustPackage {
-          name = "fox32asm";
+        packages.fox32asm = pkgs.rustPlatform.buildRustPackage rec {
+          pname = "fox32asm";
+          version = "0.3.0";
+
           src = ./. ;
           cargoLock = { lockFile = ./Cargo.lock; };
 
           NIX_SEMVER = version;
           NIX_GIT_SHA_SHORT = if self ? rev then self.rev else "dirty";
         };
+        packages.default = packages.fox32asm;
       }
     );
 }
