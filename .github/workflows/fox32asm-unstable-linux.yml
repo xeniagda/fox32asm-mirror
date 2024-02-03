@@ -19,5 +19,10 @@ jobs:
 
 
       - name: Build
-        run: nix build .#fox32asm
+        run: nix build -L .#fox32asm
 
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: fox32asm
+          path: result/bin/fox32asm
