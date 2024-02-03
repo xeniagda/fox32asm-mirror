@@ -21,8 +21,11 @@ jobs:
       - name: Build
         run: nix build -L .#fox32asm
 
+      - name: Patch
+        run: nix run nixpkgs#patchelf -- result/bin/fox32asm --set-interpreter /lib64/ld-linux-x86-64.so.2 --output fox32asm
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: fox32asm
-          path: result/bin/fox32asm
+          path: fox32asm
