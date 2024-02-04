@@ -1,4 +1,5 @@
 **/.vscode/
 **/debug/
 **/target/
-result
+**/result
+**/.direnv/
