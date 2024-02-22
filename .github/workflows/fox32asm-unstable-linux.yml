@@ -2,8 +2,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - main
-      - github-actions
+      - '*'
 
 name: fox32asm Unstable - Linux
 
